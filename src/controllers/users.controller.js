@@ -9,6 +9,23 @@ export const getUsers = async (req, res) => {
     }  
 };
 
+export const getUser = async (req, res) => {
+    try {
+        const { id } = req.params
+        const user = await User.findOne({
+            where: { 
+                id
+            },
+        });
+
+        if(!user) return res.status(404).json({ message: "The user with  this id no exists"})
+        
+        res.json(user);
+    } catch (error) {
+        return res.status(500).json({ message: "an unexpected error has occurred"})
+    }  
+};
+
 export const createUser = async (req, res) => {
     try {
         const {name,cc,email,password} = req.body;
