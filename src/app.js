@@ -5,7 +5,7 @@ import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 
-//middlewwares
+//middlewares
 app.use(express.json());
 
 //routes

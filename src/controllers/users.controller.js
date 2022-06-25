@@ -9,7 +9,7 @@ export const getUsers = async (req, res) => {
     }  
 };
 
-export const getUser = async (req, res) => {
+export const me = async (req, res) => {
     try {
         const { id } = req.params
         const user = await User.findOne({

@@ -24,3 +24,29 @@ export const signUp = async (req, res) => {
         return res.status(500).json(error);
     }
 }
+
+export const signIn = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        console.log(user);
+        if (!user) return res.status(400).json({ message: "User Not Found" });
+        const token = jwt.sign(
+            {
+                email: user.email,
+                password: user.password,
+            }, 
+            config.SECRETJWT,
+            {
+                expiresIn: 86400, // 24 hours
+            }
+        );
+      
+        res.json({ 
+            message: "Auth successfully, welcome!",
+            token
+        });
+    } catch (error) {
+        console.log(error);
+       return res.status(500).json({ message: "an unexpected error has occurred"}); 
+    }
+}
