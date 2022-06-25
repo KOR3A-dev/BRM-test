@@ -1,5 +1,8 @@
 import app from './app.js';
 import {sequelize} from './databases/database.js';
+import {verifySignup,authJwt} from "./middlewares/index.js";
+
+export { authJwt, verifySignup };
 
 async function main() {
     try {
