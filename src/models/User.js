@@ -7,11 +7,8 @@ export const User = sequelize.define("users",{
         primaryKey : true,
         autoIncrement : true
     },
-    name: {
+    username: {
         type : DataTypes.STRING,
-    },
-    cc: {
-        type : DataTypes.INTEGER,
     },
     email: {
         type : DataTypes.STRING,

@@ -28,10 +28,9 @@ export const getUser = async (req, res) => {
 
 export const createUser = async (req, res) => {
     try {
-        const {name,cc,email,password} = req.body;
+        const {username,email,password} = req.body;
         const newUser = await User.create({
-            name,
-            cc,
+            username,
             email,
             password
         });
@@ -44,12 +43,11 @@ export const createUser = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params
-        const {name,cc,email,password} = req.body
+        const {username,email,password} = req.body;
 
         const user = await User.findByPk(id)
         
-        user.name = name
-        user.cc = cc
+        user.username = username
         user.email = email
         user.password = password
 
