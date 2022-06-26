@@ -12,6 +12,7 @@ export const signUp = async (req, res) => {
         const newUser = new User({
           username,
           email,
+          roles : "cliente",
           password: await bcrypt.hash(password, 10),
         });
         
@@ -28,14 +29,25 @@ export const signUp = async (req, res) => {
 }
 
 export const signIn = async (req, res) => {
-    try {
-        const user = await User.findOne({ email: req.body.email });
 
-        if (!user) return res.status(400).json({ message: "User Not Found" });
+    try {
+        const {email, password } = req.body;
+
+        const userverify = await User.findOne({
+            where : {
+                email: email,
+                password : password //pendiente por desencriptar bcrypt.compare
+            }
+        });
+        console.log(req.body);
+        console.log(userverify);
+
+        if (!userverify) return res.status(400).json({ message: "User incorrect o not exist" });
+
         const token = jwt.sign(
             {
-                email: user.email,
-                password: user.password,
+                email: userverify.email,
+                password: userverify.password,
             }, 
             config.SECRETJWT,
             {
@@ -44,9 +56,8 @@ export const signIn = async (req, res) => {
         );
       
         res.json({ 
-            user,
             message: "Auth successfully, welcome!",
-            token
+            token,
         });
     } catch (error) {
         console.log(error);

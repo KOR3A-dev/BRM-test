@@ -26,20 +26,6 @@ export const me = async (req, res) => {
     }  
 };
 
-export const createUser = async (req, res) => {
-    try {
-        const {username,email,password} = req.body;
-        const newUser = await User.create({
-            username,
-            email,
-            password
-        });
-        res.json(newUser)
-    } catch (error) {
-        return res.status(500).json({ message: "an unexpected error has occurred"})
-    }
-}
-
 export const updateUser = async (req, res) => {
     try {
         const { id } = req.params
@@ -73,3 +59,4 @@ export const deleteUser = async (req, res) => {
         return res.status(500).json({ message: "an unexpected error has occurred"})
     }
 }
+

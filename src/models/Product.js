@@ -14,7 +14,7 @@ export const Product = sequelize.define("products",{
         type : DataTypes.INTEGER,
     },
     price: {
-        type : DataTypes.STRING,
+        type : DataTypes.INTEGER,
     },
     available_quantity: {
         type : DataTypes.INTEGER,

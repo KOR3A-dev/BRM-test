@@ -10,6 +10,7 @@ export const createAdmin = async () => {
     await User.create({
       username: "admin",
       email: "admin@localhost",
+      roles : "administrador",
       password: await bcrypt.hash("admin", 10),
     });
   }

@@ -1,4 +1,5 @@
 import {Product} from "../models/Product.js";
+import {User} from "../models/User.js";
 
 export const getProducts = async (req, res) => {
     try {
@@ -28,6 +29,7 @@ export const getProduct = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     try {
+
         const {name,number_lote,price,available_quantity,date_entry} = req.body;
         const newProduct = await Product.create({
             name,
@@ -37,6 +39,7 @@ export const createProduct = async (req, res) => {
             date_entry
         });
         res.json(newProduct)
+       
     } catch (error) {
         return res.status(500).json({ message: "an unexpected error has occurred"})
     }
@@ -77,3 +80,4 @@ export const deleteProduct = async (req, res) => {
         return res.status(500).json({ message: "an unexpected error has occurred"})
     }
 }
+

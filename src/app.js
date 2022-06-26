@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './routes/users.routes.js';
 import productRoutes from './routes/products.routes.js';
 import authRoutes from './routes/auth.routes.js';
+import invoiceRoutes from './routes/invoice.routes.js';
 
 import {createAdmin} from "./libs/setup.js";
 
@@ -15,5 +16,7 @@ app.use(express.json());
 app.use(userRoutes);
 app.use(authRoutes);
 app.use(productRoutes);
+app.use(invoiceRoutes);
+
 
 export default app;
